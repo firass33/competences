@@ -2,6 +2,8 @@ package com.example.competences.controllers;
 
 import java.util.List;
 
+import com.example.competences.DAO.IEnseignantRepository;
+import com.example.competences.entities.Enseignant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -19,6 +21,7 @@ import com.example.competences.entities.Etudiant;
 public class CatalogueControllers {
     @Autowired
     private IEtudiantRepository etudiantRepository;
+    private IEnseignantRepository enseignantRepository;
 
     @RequestMapping(value="/save",method = RequestMethod.POST)
 //@RequestBody: recherche de l'objet dans le body de la httpRequest
@@ -57,4 +60,46 @@ public class CatalogueControllers {
         p.setId(id);
         etudiantRepository.saveAndFlush(p);
         return p;
-    } }
+    }
+
+
+/*    @RequestMapping(value="/save",method = RequestMethod.POST)
+//@RequestBody: recherche de l'objet dans le body de la httpRequest
+    public Enseignant saveEnseignant(@RequestBody Enseignant e){
+        enseignantRepository.save(e);
+        return e;
+    }
+    @RequestMapping(value ="/all",method = RequestMethod.GET)
+    public List<Enseignant> getEnseignants(){
+        return enseignantRepository.findAll();
+    }
+    @RequestMapping(value="/get/{id}",method =RequestMethod.GET)
+//@PathVariable: recherche de la valeur de l'id dans l'URL
+    public Enseignant getEnseignant(@PathVariable ("id")Long id){
+        return enseignantRepository.findOne(id);
+    }
+    @RequestMapping(value ="/enseignants/{page}",method = RequestMethod.GET)
+    public Page<Enseignant> getEnseignants(@PathVariable int page){
+        return enseignantRepository.findAll(new PageRequest(page, 5));
+    }
+
+    @RequestMapping(value= "/ClasseParEns",method = RequestMethod.GET)
+    public Page<Enseignant> getEnsClasse(
+            //@RequestParam : à partir de l'url, dans ce cas exemple ?mc=HP&page=0
+            @RequestParam (value ="ens",defaultValue = "0")String ens,
+            @RequestParam (value ="page",defaultValue = "0") int page){
+        return enseignantRepository.ClasseParEns(ens, new PageRequest(page, 5));
+    }
+
+    @RequestMapping(value="/delete/{id}",method=RequestMethod.DELETE)
+    public boolean delete(@PathVariable Long id){
+        enseignantRepository.delete(id);
+        return true;
+    }
+    @RequestMapping(value="/update/{id}",method = RequestMethod.PUT)
+    public Enseignant update(@RequestBody Enseignant e,@PathVariable Long id){
+        e.setId(id);
+        enseignantRepository.saveAndFlush(e);
+        return e;
+    }*/
+}

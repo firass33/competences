@@ -11,4 +11,5 @@ public class Competence {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long Id;
     private String nom;
+    private String matiere;
 }
