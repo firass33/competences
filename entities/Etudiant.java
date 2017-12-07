@@ -6,53 +6,55 @@ import javax.persistence.*;
 
 @Entity
 public class Etudiant implements Serializable {
+
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long Id;
-    private String nom;
-    private String prenom;
-    private String classe;
+    private Long Code_Etud;
 
-    public Long getId() {
-        return Id;
+    private String Nom_Etud;
+    private String Prenom_Etud;
+
+    @ManyToOne
+    private Classe classe;
+
+    public Long getCode_Etud() {
+        return Code_Etud;
     }
 
-    public void setId(Long id) {
-        Id = id;
+    public void setCode_Etud(Long code_Etud) {
+        Code_Etud = code_Etud;
     }
 
-    public String getNom() {
-        return nom;
+    public String getNom_Etud() {
+        return Nom_Etud;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setNom_Etud(String nom_Etud) {
+        Nom_Etud = nom_Etud;
     }
 
-    public String getPrenom() {
-        return prenom;
+    public String getPrenom_Etud() {
+        return Prenom_Etud;
     }
 
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
+    public void setPrenom_Etud(String prenom_Etud) {
+        Prenom_Etud = prenom_Etud;
     }
 
-    public String getClasse() {
+    public Classe getClasse() {
         return classe;
     }
 
-    public void setClasse(String classe) {
+    public void setClasse(Classe classe) {
         this.classe = classe;
     }
 
-    public Etudiant() {
+    public Etudiant(){
         super();
-        // TODO Auto-generated constructor stub
     }
 
-    public Etudiant(String nom, String prenom, String classe) {
-        this.nom = nom;
-        this.prenom = prenom;
-        this.classe = classe;
+    public Etudiant(String nom_Etud, String prenom_Etud) {
+        Nom_Etud = nom_Etud;
+        Prenom_Etud = prenom_Etud;
     }
 }

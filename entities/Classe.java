@@ -1,48 +1,52 @@
 package com.example.competences.entities;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 @Entity
 public class Classe {
-    @javax.persistence.Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long Id;
-    private String nom;
-    private Long Ens_id;
+    @Id
+    @GeneratedValue
+    private Long Code_Classe;
+    private String Nom_Classe;
 
-    public Long getId() {
-        return Id;
+    @OneToMany
+    @JoinColumn(name = "Code_Classe")
+    private List<Etudiant> classeetudiants = new ArrayList<>();
+
+
+    public Long getCode_Classe() {
+        return Code_Classe;
     }
 
-    public void setId(Long id) {
-        Id = id;
+    public void setCode_Classe(Long code_Classe) {
+        Code_Classe = code_Classe;
     }
 
-    public String getNom() {
-        return nom;
+    public String getNom_Classe() {
+        return Nom_Classe;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setNom_Classe(String nom_Classe) {
+        Nom_Classe = nom_Classe;
     }
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "Ens_id", nullable = false)
-    public Long getEns_id() {
-        return Ens_id;
+    public List<Etudiant> getClasseetudiants() {
+        return classeetudiants;
     }
 
-    public void setEns_id(Long ens_id) {
-        Ens_id = ens_id;
+    public void setClasseetudiants(List<Etudiant> classeetudiants) {
+        this.classeetudiants = classeetudiants;
     }
 
-    public Classe() {
+    public Classe()
+    {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-    public Classe(String nom, Long ens_id) {
-        this.nom = nom;
-        Ens_id = ens_id;
+    public Classe(String nom_Classe) {
+        Nom_Classe = nom_Classe;
     }
 }

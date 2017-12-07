@@ -8,62 +8,36 @@ import javax.persistence.*;
 public class Enseignant implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long Id;
-    private String nom;
-    private String prenom;
-    private String classe;
-    private String matiere;
+    private Long Code_Ens;
+    private String Nom_Ens;
+    private String Prenom_Ens;
 
-    @OneToOne(mappedBy = "Ens_id")
-    public Long getId() {
-        return Id;
+    public Long getCode_Ens() {
+        return Code_Ens;
     }
 
-    public void setId(Long id) {
-        Id = id;
+    public void setCode_Ens(Long code_Ens) {
+        Code_Ens = code_Ens;
     }
 
-    public String getNom() {
-        return nom;
+    public String getNom_Ens() {
+        return Nom_Ens;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setNom_Ens(String nom_Ens) {
+        Nom_Ens = nom_Ens;
     }
 
-    public String getPrenom() {
-        return prenom;
+    public String getPrenom_Ens() {
+        return Prenom_Ens;
     }
 
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
+    public void setPrenom_Ens(String prenom_Ens) {
+        Prenom_Ens = prenom_Ens;
     }
 
-    public String getClasse() {
-        return classe;
-    }
-
-    public void setClasse(String classe) {
-        this.classe = classe;
-    }
-
-    public String getMatiere() {
-        return matiere;
-    }
-
-    public void setMatiere(String matiere) {
-        this.matiere = matiere;
-    }
-    public Enseignant() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-
-    public Enseignant(String nom, String prenom, String classe, String matiere) {
-        this.nom = nom;
-        this.prenom = prenom;
-        this.classe = classe;
-        this.matiere = matiere;
+    public Enseignant(String nom_Ens, String prenom_Ens) {
+        Nom_Ens = nom_Ens;
+        Prenom_Ens = prenom_Ens;
     }
 }
