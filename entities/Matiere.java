@@ -1,9 +1,10 @@
 package com.example.competences.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+import javax.xml.bind.annotation.XmlTransient;
+import java.util.List;
 
 @Entity
 public class Matiere {
@@ -11,6 +12,9 @@ public class Matiere {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long Code_Mat;
     private String Nom_Mat;
+
+    @OneToMany(mappedBy="matiere",fetch=FetchType.LAZY)
+    private List<Competence> competences;
 
     public Long getCode_Mat() {
         return Code_Mat;
@@ -26,6 +30,16 @@ public class Matiere {
 
     public void setNom_Mat(String nom_Mat) {
         Nom_Mat = nom_Mat;
+    }
+
+    @JsonIgnore
+    @XmlTransient
+    public List<Competence> getCompetences() {
+        return competences;
+    }
+
+    public void setCompetences(List<Competence> competences) {
+        this.competences = competences;
     }
 
     public Matiere()

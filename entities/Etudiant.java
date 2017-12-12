@@ -15,6 +15,7 @@ public class Etudiant implements Serializable {
     private String Prenom_Etud;
 
     @ManyToOne
+    @JoinColumn(name="Code_Classe")
     private Classe classe;
 
     public Long getCode_Etud() {
@@ -53,8 +54,9 @@ public class Etudiant implements Serializable {
         super();
     }
 
-    public Etudiant(String nom_Etud, String prenom_Etud) {
+    public Etudiant(String nom_Etud, String prenom_Etud, Classe classe) {
         Nom_Etud = nom_Etud;
         Prenom_Etud = prenom_Etud;
+        this.classe = classe;
     }
 }

@@ -11,13 +11,13 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface IEtudiantRepository extends JpaRepository<Etudiant, Long>{
-	@Query("select e from Etudiant e where e.classe like :x")
-	public Page<Etudiant> etudiantParClasse(@Param("x") String cla, Pageable p);
 
 	//@Query("select e from Etudiant e where e.classe like :x")
 	//public List<Etudiant> findByClasse (@Param("x")String Nom_Classe);
 
-	@Query("insert into Etudiant (id,name,age) select :id,:name,:age from Dual")
-	public int modifyingQueryInsertPerson(@Param("id")Long id, @Param("name")String name, @Param("age")Integer age);
-	}
+	//@Query("insert into Etudiant (id,name,age) select :id,:name,:age from Dual")
+	//public int modifyingQueryInsertPerson(@Param("id")Long id, @Param("name")String name, @Param("age")Integer age);
+
+	public Page<Etudiant> findByClasse(Classe classe, Pageable pageable);
+}
 	

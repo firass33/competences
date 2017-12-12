@@ -6,7 +6,11 @@ import java.util.List;
 import java.util.Set;
 
 import com.example.competences.DAO.IClasseRepository;
+import com.example.competences.DAO.ICompetenceRepository;
+import com.example.competences.DAO.IMatiereRepository;
 import com.example.competences.entities.Classe;
+import com.example.competences.entities.Competence;
+import com.example.competences.entities.Matiere;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -19,6 +23,8 @@ import com.example.competences.DAO.IEtudiantRepository;
 import com.example.competences.entities.Etudiant;
 import org.springframework.data.domain.Pageable;
 
+import javax.validation.constraints.Null;
+
 @SpringBootApplication
 @ComponentScan
 @ImportResource("classpath:spring-config.xml")
@@ -29,6 +35,10 @@ public class CompetencesApplication implements CommandLineRunner  {
 	IEtudiantRepository et;
 	@Autowired
 	IClasseRepository cl;
+	@Autowired
+	ICompetenceRepository co;
+	@Autowired
+	IMatiereRepository ma;
 	//IEnseignantRepository en;
 
 	public static void main(String[] args) {
@@ -44,23 +54,29 @@ public class CompetencesApplication implements CommandLineRunner  {
 	@Override
 	public void run(String... strings) throws Exception {
 
-        et.deleteAllInBatch();
-        cl.deleteAllInBatch();
-	    //Classe dsi32 = new Classe();
-	    //dsi32.setNom_Classe("dsi32");
+        //et.deleteAllInBatch();
+        //cl.deleteAllInBatch();
+		/*Classe dsi31 = new Classe("dsi31");
+	    Classe dsi32 = new Classe("dsi32");
+		cl.save(dsi31);
+		cl.save(dsi32);
+		et.save(new Etudiant("majd","Bouhlel", dsi32));
+		et.save(new Etudiant("bjeoui","feten",dsi32));
+		et.save(new Etudiant("barakati","oumayma",dsi32));
+        et.save(new Etudiant("xxxx","yyyy",dsi31));
+		et.save(new Etudiant("sfsdfds","ggdfgdfg",dsi31));
 
-       // Classe dsi31 = new Classe();
-        //dsi31.setNom_Classe("dsi31");
-
-        //List<Etudiant> etud_dsi31 =et.findByClasse("dsi31");
-        //List<Etudiant> etud_dsi32 =et.findByClasse("dsi32");
-
-		et.save(new Etudiant("majd","Bouhlel"));
-		et.save(new Etudiant("bjeoui","feten"));
-		et.save(new Etudiant("barakati","oumayma"));
-        et.save(new Etudiant("xxxx","yyyy"));
-        cl.save(new Classe("dsi31"));
-        cl.save(new Classe("dsi32"));
+		Matiere jee = new Matiere("jee");
+		ma.save(jee);
+		Matiere Android = new Matiere("Android");
+		ma.save(Android);
+		Matiere Gestion = new Matiere("Gestion de projet");
+		ma.save(Gestion);
+		Matiere Anglais = new Matiere("Anglais");
+		ma.save(Anglais);
+		co.save(new Competence("persistence","3",jee));
+		co.save(new Competence("hibernate","3",jee));
+		co.save(new Competence("SCRUM","3",Gestion));*/
 
 		List<Etudiant> etudiants = et.findAll();
 

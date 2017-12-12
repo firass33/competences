@@ -1,6 +1,9 @@
 package com.example.competences.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlTransient;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -12,9 +15,8 @@ public class Classe {
     private Long Code_Classe;
     private String Nom_Classe;
 
-    @OneToMany
-    @JoinColumn(name = "Code_Classe")
-    private List<Etudiant> classeetudiants = new ArrayList<>();
+    @OneToMany(mappedBy="classe",fetch=FetchType.LAZY)
+    private List<Etudiant> etudiants;
 
 
     public Long getCode_Classe() {
@@ -33,12 +35,15 @@ public class Classe {
         Nom_Classe = nom_Classe;
     }
 
-    public List<Etudiant> getClasseetudiants() {
-        return classeetudiants;
+
+    @JsonIgnore
+    @XmlTransient
+    public List<Etudiant> getEtudiants() {
+        return etudiants;
     }
 
-    public void setClasseetudiants(List<Etudiant> classeetudiants) {
-        this.classeetudiants = classeetudiants;
+    public void setEtudiants(List<Etudiant> etudiants) {
+        this.etudiants = etudiants;
     }
 
     public Classe()

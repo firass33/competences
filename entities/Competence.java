@@ -1,9 +1,6 @@
 package com.example.competences.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Competence {
@@ -12,6 +9,10 @@ public class Competence {
     private Long Code_Comp;
     private String Nom_Comp;
     private String niveau;
+
+    @ManyToOne
+    @JoinColumn(name="Code_Mat")
+    private Matiere matiere;
 
     public Long getCode_Comp() {
         return Code_Comp;
@@ -37,14 +38,37 @@ public class Competence {
         this.niveau = niveau;
     }
 
+    public Matiere getMatiere() {
+        return matiere;
+    }
+
+    public void setMatiere(Matiere matiere) {
+        this.matiere = matiere;
+    }
+
     public Competence()
     {
         super();
     }
 
 
-    public Competence(String nom_Comp, String niveau) {
+    public Competence(String nom_Comp, String niveau, Matiere matiere) {
         Nom_Comp = nom_Comp;
         this.niveau = niveau;
+        this.matiere = matiere;
     }
+
+    /*public String toString(){
+        String info = "";
+
+        JSONObject jsonInfo = new JSONObject();
+        jsonInfo.put("name",this.name);
+
+        JSONObject companyObj = new JSONObject();
+        companyObj.put("name", this.company.getName());
+        jsonInfo.put("company", companyObj);
+
+        info = jsonInfo.toString();
+        return info;
+    }*/
 }
